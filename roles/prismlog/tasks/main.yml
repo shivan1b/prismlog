@@ -1,0 +1,20 @@
+- name: Copy prismlog template to server
+  template: src=prismlog.j2 dest={{ project_path }}/prismlog
+  mode: 555
+
+- name: Create a symbolic link to be able to use it as a command
+  command: ln -s "{{ project_path }}/prismlog" /usr/bin/prismlog
+
+- name: Create the file which contains paths to all log files
+  blockinfile:
+    path: "{{ project_path }}/logfiles"
+    create: yes
+    mode: 555
+    block: |
+      {{ item }}
+    with_items:
+    - {{ nginx_access_log_dir }}
+    - {{ nginx_error_log_dir }}
+    - {{ uwsgi_log_dir }}
+    - {{ celery_log_dir }}
+

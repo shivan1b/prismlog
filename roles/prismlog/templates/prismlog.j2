@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$1" == "-h" ] ; then
+    echo "Usage: `basename $0` [-h]"
+    echo "Add paths files you want to track logs of to \`logfile\`"
+    exit 0
+fi
+
+cat logfile | xargs tail -f

@@ -1,0 +1,4 @@
+nginx_access_log_dir: /path/to/nginx_access_log
+nginx_error_log_dir: /path/to/nginx_error_log
+uwsgi_log_dir: /path/to/uwsgi_log
+celery_log_dir: /path/to/celery_log
